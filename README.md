@@ -82,7 +82,6 @@ bool search_veb(const vector<int>& v, int root, int n, int k) {
 }
 ```
 
-> **Bug corregido respecto al código original:** La función `left_size` original calculaba el tamaño del subárbol izquierdo usando la fórmula de árbol binario completo (basada en altura y último nivel), lo que daba resultados incorrectos para árboles no perfectos (p.ej. n=10 → devolvía 6 en vez de 4). La fórmula correcta es simplemente `(n-1)/2`, que corresponde exactamente al índice `mid = (lo+hi)/2` que usa `build_veb`.
 
 ---
 
