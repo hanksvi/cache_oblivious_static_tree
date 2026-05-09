@@ -20,17 +20,16 @@ struct Node {
 Node* bst_insert(Node* root, int key) {
     if (!root) return new Node(key);
     if (key < root->key) root->left  = bst_insert(root->left,  key);
-    else                 root->right = bst_insert(root->right, key);
+    else  root->right = bst_insert(root->right, key);
     return root;
 }
 
 
 bool search_bst(Node* root, int key) {
-    while (root) {
-        if (key == root->key) return true;
-        root = (key < root->key) ? root->left : root->right;
-    }
-    return false;
+    if (!root) return false;
+    if (key == root->key) return true;
+    if (key < root->key) return search_bst(root->left, key);
+    return search_bst(root->right, key);
 }
 
 void free_bst(Node* root) {
@@ -142,6 +141,7 @@ int main(int argc, char* argv[]) {
     int N = (argc > 1) ? atoi(argv[1]) : 1000000;
     int Q = (argc > 2) ? atoi(argv[2]) : 100000;
     int T = (argc > 3) ? atoi(argv[3]) : 5;
+
 
     cout << " Cache-Oblivious Static Tree vs BST Benchmark " << endl;
     cout << "N=" << N << "  Q=" << Q << "  T=" << T << endl;
